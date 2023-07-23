@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd functions; npm install
-
 if [ -z "${FIREBASE_TOKEN}" ]; then
     echo "FIREBASE_TOKEN is missing"
     exit 1
@@ -12,7 +10,7 @@ if [ -z "${FIREBASE_PROJECT}" ]; then
     exit 1
 fi
 
-firebase deploy \
+cd functions; npx firebase deploy \
     -m "${GITHUB_REF} (${GITHUB_SHA})" \
     --project ${FIREBASE_PROJECT} \
     --only functions
