@@ -7,12 +7,14 @@ if [ -z "${FIREBASE_TOKEN}" ]; then
     exit 1
 fi
 
-if [ -z "${FIREBASE_PROJECT}" ]; then
-    echo "FIREBASE_PROJECT is missing"
-    exit 1
+if [ -z "${TARGET}" ]; then
+    echo "TARGET is missing - setting 'default'"
+    TARGET = "default"
 fi
 
-npx firebase deploy \
+
+# Token automatically used from environment
+npx firebase use ${TARGET} deploy \
     -m "${GITHUB_REF} (${GITHUB_SHA})" \
     --project ${FIREBASE_PROJECT} \
     --only ${DEPLOY_ONLY}
