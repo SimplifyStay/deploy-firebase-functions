@@ -20,9 +20,12 @@ if [ -n "$GCP_SA_KEY" ]; then
     echo "Storing the decoded GCP_SA_KEY in /opt/gcp_key.json"
     echo "$GCP_SA_KEY" | base64 -d > /opt/gcp_key.json # If encoded base64 key, decode and save
   fi
+  
+  echo "$GCP_SA_KEY" > $HOME/gcloud.json
 
-  echo "Exporting GOOGLE_APPLICATION_CREDENTIALS=/opt/gcp_key.json"
-  export GOOGLE_APPLICATION_CREDENTIALS=/opt/gcp_key.json
+  echo "Exporting GOOGLE_APPLICATION_CREDENTIALS=$GCP_SA_KEY"
+  echo "Exporting GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud.json"
+  export GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud.json
 fi
 
 npx firebase use ${TARGET}
