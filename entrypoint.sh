@@ -13,11 +13,9 @@ if [ -z "${TARGET}" ]; then
 fi
 
 if [ -n "$GCP_SA_KEY" ]; then
-  
-  echo "$GCP_SA_KEY" > ./opt/gcp_key.json
-
-  echo "Exporting GOOGLE_APPLICATION_CREDENTIALS=./opt/gcp_key.json"
-  export GOOGLE_APPLICATION_CREDENTIALS=./opt/gcp_key.json
+  echo "$GCP_SA_KEY" > $HOME/gcp_key.json
+  echo "Exporting GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp_key.json"
+  export GOOGLE_APPLICATION_CREDENTIALS=/$HOME/gcp_key.json
 fi
 
 npx firebase use ${TARGET}
