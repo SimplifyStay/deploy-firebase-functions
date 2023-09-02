@@ -12,9 +12,9 @@ if [ -z "${TARGET}" ]; then
     TARGET = "default"
 fi
 
+npx firebase use ${TARGET}
 
 # Token automatically used from environment
-npx firebase use ${TARGET} deploy \
+npx firebase deploy \
     -m "${GITHUB_REF} (${GITHUB_SHA})" \
-    --project ${FIREBASE_PROJECT} \
     --only ${DEPLOY_ONLY}
