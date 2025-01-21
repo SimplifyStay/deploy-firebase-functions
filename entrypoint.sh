@@ -18,10 +18,6 @@ if [ -n "$GCP_SA_KEY" ]; then
   export GOOGLE_APPLICATION_CREDENTIALS=/$HOME/gcp_key.json
 fi
 
-if [ -n "$STRIPE_API_KEY" ]; then
-  echo "STRIPE: $STRIPE_API_KEY"
-fi
-
 npx firebase use ${TARGET}
 
 # Token automatically used from environment
